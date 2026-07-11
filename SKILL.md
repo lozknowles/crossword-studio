@@ -1,311 +1,113 @@
 ---
-
-name: stackoverflow-agent-knowledge
-description: Use this skill when solving coding, configuration, dependency, runtime, Docker, Linux, API, framework, or debugging problems where a verified Stack Overflow-style answer, known fix, failure signature, or environment-specific solution may help.
-license: CC-BY-SA-4.0
-compatibility: Works with coding agents that support SKILL.md-style skills. Requires web/API access to Stack Overflow for Agents or a compatible knowledge endpoint.
+name: generic-crossword-builder
+description: Build, validate, and publish privacy-first browser crosswords generated from PDF source material in exact 5x5 or 10x10 grids.
+license: MIT
+compatibility: React, TypeScript, Vite, PDF.js, and pnpm 11.
 metadata:
-version: "0.2"
-owner: "Stack Overflow for Agents"
-trust_model: "human-reviewed and agent-verified"
-last_updated: "2026-06-13"
+  version: "1.0"
+  owner: "lozknowles"
+  last_updated: "2026-07-11"
 ---
 
-# Stack Overflow Agent Knowledge Skill
+# Generic Crossword Builder
 
-## Purpose
+Use this skill when developing Crossword Studio, importing a PDF, generating a 5x5 or 10x10 puzzle, validating crossword structure, improving the solver, or publishing the static application.
 
-Use this skill to help an agent find, validate, apply, and contribute technical solutions using Stack Overflow-style agent knowledge.
+## Project objective
 
-This skill is useful for:
+Turn locally extracted PDF text into an editable crossword and an accessible online solver without uploading the source document or requiring a backend.
 
-* Debugging errors, logs, stack traces, and failed builds
-* Finding known fixes for framework, package, Docker, Linux, CI/CD, API, or runtime problems
-* Checking whether a solution applies to the current environment
-* Producing safer commands instead of vague prose
-* Capturing successful fixes as reusable knowledge
+## Current implementation
 
-## Before using
+The `codex/build-crossword-studio` branch contains the working React application. It includes:
 
-First inspect the local project and environment.
+- Browser-local PDF.js extraction
+- Curated and automatically suggested answers and clues
+- Deterministic multi-attempt layout generation
+- Exact 5x5 and 10x10 grids
+- Conflict, overlap, adjacency, and boundary checks
+- Reading-order clue numbering
+- Black unused squares
+- Responsive mouse, touch, and arrow-key solving
+- Check, reveal, restart, timer, print, autosave, and JSON export
+- GitHub Pages deployment
 
-Check:
+The Collingham Footnotes deployment has additionally proven the need for per-entry sources, strict run validation, numerical clue ordering, white answer cells with black borders, and an active clue immediately beneath the grid. Treat those as required consolidation work for the standalone builder.
 
-* Operating system and version
-* Runtime versions
-* Package manager
-* Framework versions
-* Docker/container state
-* Relevant logs
-* Exact error messages
-* Recently changed files
-* Existing project instructions such as `AGENTS.md`, `README.md`, `.env.example`, or local `SKILL.md` files
+## Required workflow
 
-Never apply a public answer blindly.
+1. Inspect `README.md`, `src/types.ts`, `src/lib/extract.ts`, `src/lib/crossword.ts`, `src/App.tsx`, and `src/styles.css` before changing behaviour.
+2. Keep PDF processing local to the browser. Do not add an upload API unless explicitly requested.
+3. Preserve exact `5 | 10` grid sizing.
+4. Ensure every published answer has an answer, clue, direction, start coordinate, clue number, and human-readable source reference.
+5. Validate the complete rendered grid, not only declared entries.
+6. Run `pnpm lint` and `pnpm build` before committing.
+7. Keep the GitHub Pages workflow compatible with pnpm 11.
 
-## Query strategy
+## Crossword validity rules
 
-When searching, include:
+A generated or imported puzzle is valid only when:
 
-1. Exact error message
-2. Framework/library/tool name
-3. Version numbers
-4. Operating system
-5. Runtime or package manager
-6. Relevant command that failed
-7. Docker/container context if applicable
+- Answers fit within the selected grid.
+- Crossing letters agree.
+- Two answers do not overlap in the same direction.
+- Answers do not touch end-to-end.
+- Non-crossing letters do not touch perpendicularly.
+- Every horizontal or vertical run of two or more playable cells corresponds to exactly one clue.
+- Every clue corresponds to exactly one placed answer.
+- Every entry has a named source for its answer or clue.
+- Across and Down lists are each sorted numerically.
+- Unused cells render black and playable cells render white with black borders.
 
-Good query shape:
+Never infer that a visually formed two-letter run is intentional. If it has no declared entry and clue, reject the layout.
 
-```text
-<exact error> <tool/framework> <version> <os> <runtime/package manager>
-```
+## Solver accessibility rules
 
-Example:
+- All playable cells must be reachable by keyboard.
+- Left/Right movement prefers Across entries; Up/Down prefers Down entries.
+- Arrow navigation skips black and non-editable separator cells.
+- Focus, active cell, active answer, and displayed clue stay synchronized.
+- Show the selected clue directly beneath the grid so it remains visible while solving.
+- Preserve accessible labels containing row and column information.
+- Do not communicate correctness by colour alone.
 
-```text
-ForegroundServiceDidNotStartInTimeException Android Capacitor service Pixel 8 Android 15
-```
+## Source handling
 
-## Evaluate results
+- Prefer PDFs with selectable text; explain that image-only scans require OCR.
+- Retain the source filename and source sentence or page reference for each proposed clue.
+- Allow users to edit automatically generated answers and clues before layout.
+- Do not claim a fact is sourced when the extracted text does not support it.
+- Include source metadata in JSON exports.
 
-Prefer answers with:
+## Verification checklist
 
-* Human approval
-* Multiple independent agent verifications
-* Recent verification date
-* Matching environment
-* Reproducible commands
-* Clear failure signature
-* Rollback instructions
-* Known affected versions
-* Known fixed versions
-
-Treat answers as lower confidence when:
-
-* They are old and unverified
-* They do not mention versions
-* They require disabling security checks
-* They suggest deleting data
-* They involve production credentials
-* They conflict with official documentation
-* They are written as speculation rather than a tested fix
-
-## Confidence model
-
-When presenting a solution, include:
-
-```yaml
-confidence: low | medium | high
-reason: "<why this confidence level was chosen>"
-matched_environment:
-  os: "<detected OS>"
-  tool: "<detected tool>"
-  version: "<detected version>"
-last_verified: "<date if known>"
-verified_by: "<humans/agents if known>"
-```
-
-## Environment fingerprint
-
-Before recommending a fix, compare the answer against the local environment.
-
-Capture:
-
-```yaml
-environment:
-  os: ""
-  architecture: ""
-  shell: ""
-  docker: ""
-  node: ""
-  python: ""
-  java: ""
-  framework: ""
-  package_manager: ""
-  gpu: ""
-  service_manager: ""
-```
-
-If the environment does not match, say so.
-
-## Failure signatures
-
-When an error is found, convert it into a reusable signature.
-
-Example:
-
-```yaml
-failure_signature:
-  service: "Frigate"
-  pattern:
-    - "MQTT not authorised"
-    - "Unable to connect to broker"
-  likely_causes:
-    - "MQTT username/password mismatch"
-    - "Broker ACL problem"
-    - "Frigate using stale config"
-  checks:
-    - "docker logs frigate --tail 100"
-    - "docker logs mosquitto --tail 100"
-    - "grep -n \"mqtt:\" config.yml"
-  safe_fix:
-    - "Verify MQTT credentials"
-    - "Restart mosquitto"
-    - "Restart Frigate"
-```
-
-## Prefer executable fixes
-
-Prefer precise commands over vague instructions.
-
-Bad:
-
-```text
-Restart the service and check the logs.
-```
-
-Good:
+Run:
 
 ```bash
-docker restart frigate
-sleep 5
-docker logs frigate --tail 100
+pnpm install --frozen-lockfile
+pnpm lint
+pnpm build
 ```
 
-For destructive commands, require explicit confirmation before execution.
+Then verify both 5x5 and 10x10 puzzles:
 
-Destructive examples:
+- PDF extraction and sample loading
+- Answer/clue editing
+- Successful generation and failure messaging
+- No accidental unclued runs
+- Numerical Across/Down order
+- Black unused and white playable cells
+- Arrow-key navigation across the complete grid
+- Active clue placement beneath the board
+- Check, reveal, restart, timer, autosave, print, and JSON export
+- Desktop and mobile layout without horizontal overflow
 
-```bash
-rm -rf
-docker volume rm
-DROP DATABASE
-git reset --hard
-```
+## Progress record
 
-## Response format
+As of 11 July 2026:
 
-When returning an answer to the user, use:
-
-````markdown
-### Likely cause
-...
-
-### Why this matches your setup
-...
-
-### Safe fix
-```bash
-...
-````
-
-### Verify
-
-```bash
-...
-```
-
-### Rollback
-
-```bash
-...
-```
-
-### Confidence
-
-High / Medium / Low
-
-````
-
-## Contribution workflow
-
-When a new successful fix is discovered, create a draft knowledge entry.
-
-```yaml
-title: ""
-problem: ""
-failure_signature:
-  - ""
-environment:
-  os: ""
-  versions:
-    - ""
-root_cause: ""
-fix:
-  commands:
-    - ""
-verification:
-  commands:
-    - ""
-  observed_result: ""
-rollback:
-  commands:
-    - ""
-confidence: ""
-source:
-  project: ""
-  date: ""
-status: "draft-human-review-required"
-````
-
-Do not publish automatically unless the user explicitly asks.
-
-## Security rules
-
-Never include:
-
-* API keys
-* Passwords
-* Cookies
-* Access tokens
-* Private SSH keys
-* Private URLs
-* Personal data
-* `.env` contents
-* Internal IP addresses unless the user is working locally and the data stays local
-
-Redact secrets like this:
-
-```text
-sk-...REDACTED
-password=REDACTED
-```
-
-## Local-first preference
-
-Before searching externally, check local project knowledge:
-
-1. `AGENTS.md`
-2. Local `SKILL.md`
-3. README files
-4. Existing scripts
-5. Docker compose files
-6. Previous logs
-7. Local notes
-8. Internal knowledge base
-
-Then search Stack Overflow-style agent knowledge.
-
-Then search the wider web or official docs.
-
-## For Lawrence's hpubuntu stack
-
-Prioritise environment-aware fixes for:
-
-* Ubuntu 24.04
-* Docker Compose
-* Home Assistant
-* Frigate
-* Mosquitto MQTT
-* Jellyfin
-* Immich
-* NVIDIA Quadro P3000 / CUDA 12.2
-* LocalWalks
-* Capacitor Android
-* Codex CLI
-* AnythingLLM
-* llama.cpp / GGUF models
-* NAS-mounted storage
-
-Assume the user values practical working commands over long theory.
+- Initial standalone studio implemented and pushed.
+- GitHub Pages workflow aligned with pnpm 11.
+- Draft PR #1 open.
+- Collingham Footnotes integration deployed to staging and used to identify stricter publishing and accessibility requirements.
+- README and this skill updated to distinguish implemented standalone features from the next consolidation work.
