@@ -29,6 +29,10 @@
 .builder-layout { background: #e9eee4; border-color: #e9eee42b; }
 .site-footer { color: #abbeb6; border-color: #e9eee42b; }
 .site-footer a { color: #72ead5; }
+.how-it-works { color: #e9eee4; }
+.how-it-works > .eyebrow { color: #72ead5; background: #10231d; }
+.how-grid > div { border-color: #e9eee42b; }
+.how-grid p { color: #abbeb6; }
 .solver-page { background: var(--paper); border-radius: 12px; margin-top: 28px; padding: 28px; }
 @media (max-width: 580px) { .solver-page { padding: 20px 14px; margin-top: 0; border-radius: 0; } }
 @media print { .app-shell, .solver-page { background: white; } .solver-page { margin: 0; padding: 0; } }
