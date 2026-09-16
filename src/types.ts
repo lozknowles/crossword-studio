@@ -5,6 +5,9 @@ export interface SourceEntry {
   answer: string
   clue: string
   selected: boolean
+  sourceName: string
+  sourceText?: string
+  sourceUrl?: string
 }
 
 export interface Placement extends SourceEntry {
@@ -30,4 +33,28 @@ export interface Puzzle {
   cells: PuzzleCell[][]
   placements: Placement[]
   createdAt: string
+  omittedAnswers: string[]
+}
+
+// The portable record consumed by Collingham's unchanged grid builder.
+export interface CrosswordEntryRecord {
+  id: string
+  answer: string
+  clue: string
+  number: number
+  row: number
+  col: number
+  direction: Direction
+}
+
+export interface CrosswordPuzzleRecord {
+  entries: CrosswordEntryRecord[]
+}
+
+export interface SourceDocument {
+  name: string
+  text: string
+  kind: 'sample' | 'document' | 'url' | 'text'
+  pages?: number
+  url?: string
 }

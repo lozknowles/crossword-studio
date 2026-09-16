@@ -27,7 +27,12 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm test
+      - run: python -m unittest discover -s server -v
       - run: pnpm build
+        env:
+          VITE_ARTICLE_API: https://www.lozknowles.com/crossword/api/article
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

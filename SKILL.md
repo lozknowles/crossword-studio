@@ -1,12 +1,12 @@
 ---
 name: generic-crossword-builder
-description: Build, validate, and publish privacy-first browser crosswords generated from PDF source material in exact 5x5 or 10x10 grids.
+description: Build, validate, and publish privacy-first browser crosswords generated from local documents or public articles in exact 5x5 or 10x10 grids.
 license: MIT
 compatibility: React, TypeScript, Vite, PDF.js, and pnpm 11.
 metadata:
-  version: "1.0"
+  version: "2.0"
   owner: "lozknowles"
-  last_updated: "2026-07-11"
+  last_updated: "2026-09-16"
 ---
 
 # Generic Crossword Builder
@@ -15,24 +15,13 @@ Use this skill when developing Crossword Studio, importing a PDF, generating a 5
 
 ## Project objective
 
-Turn locally extracted PDF text into an editable crossword and an accessible online solver without uploading the source document or requiring a backend.
+Turn locally extracted PDF, DOCX or text and public article URLs into editable crosswords and an accessible online solver. Documents stay in the browser. URL imports use the bounded public-article reader. Include a prepared crossword and direct PDF download.
 
 ## Current implementation
 
-The `codex/build-crossword-studio` branch contains the working React application. It includes:
+The main branch provides local document extraction, a public URL reader, editable clues, exact 5x5 and 10x10 generation, strict whole-grid validation, per-entry sources, saved online solving, temporary hints, PDF/print/JSON export, and a curated themed crossword. The website and GitHub share a generated scaffolding hero.
 
-- Browser-local PDF.js extraction
-- Curated and automatically suggested answers and clues
-- Deterministic multi-attempt layout generation
-- Exact 5x5 and 10x10 grids
-- Conflict, overlap, adjacency, and boundary checks
-- Reading-order clue numbering
-- Black unused squares
-- Responsive mouse, touch, and arrow-key solving
-- Check, reveal, restart, timer, print, autosave, and JSON export
-- GitHub Pages deployment
-
-The Collingham Footnotes deployment has additionally proven the need for per-entry sources, strict run validation, numerical clue ordering, white answer cells with black borders, and an active clue immediately beneath the grid. Treat those as required consolidation work for the standalone builder.
+The Collingham source comparison is pinned in `docs/COLLINGHAM-PROVENANCE.md`. Keep the copied core unchanged; adapt solver behaviour explicitly and record the upstream revision. Do not equate upstream main with a live Collingham release.
 
 ## Required workflow
 
@@ -41,7 +30,7 @@ The Collingham Footnotes deployment has additionally proven the need for per-ent
 3. Preserve exact `5 | 10` grid sizing.
 4. Ensure every published answer has an answer, clue, direction, start coordinate, clue number, and human-readable source reference.
 5. Validate the complete rendered grid, not only declared entries.
-6. Run `pnpm lint` and `pnpm build` before committing.
+6. Run `pnpm lint`, `pnpm test`, Python service tests and `pnpm build` before committing.
 7. Keep the GitHub Pages workflow compatible with pnpm 11.
 
 ## Crossword validity rules
@@ -91,7 +80,7 @@ pnpm build
 
 Then verify both 5x5 and 10x10 puzzles:
 
-- PDF extraction and sample loading
+- PDF, DOCX, text and public article extraction; prepared puzzle and sample loading
 - Answer/clue editing
 - Successful generation and failure messaging
 - No accidental unclued runs
@@ -99,15 +88,11 @@ Then verify both 5x5 and 10x10 puzzles:
 - Black unused and white playable cells
 - Arrow-key navigation across the complete grid
 - Active clue placement beneath the board
-- Check, reveal, restart, timer, autosave, print, and JSON export
+- Check, two-second hints, restart, timer, autosave, PDF, print and JSON export
 - Desktop and mobile layout without horizontal overflow
 
-## Progress record
+## Publication boundary
 
-As of 11 July 2026:
+Publish only built browser assets. The Python article reader stays outside the web root, binds to loopback, validates every DNS/redirect target and receives an overwritten client-IP header from the reverse proxy. Retain request, response, time and concurrency limits. Never add private-network fetching or document upload by inference.
 
-- Initial standalone studio implemented and pushed.
-- GitHub Pages workflow aligned with pnpm 11.
-- Draft PR #1 open.
-- Collingham Footnotes integration deployed to staging and used to identify stricter publishing and accessibility requirements.
-- README and this skill updated to distinguish implemented standalone features from the next consolidation work.
+See `docs/DEPLOYMENT.md` for website and GitHub Pages deployment. Render PDF output and inspect it visually after layout changes. Keep README capabilities and the pinned website source revision current.

@@ -1,5 +1,6 @@
 import type { Direction, Placement, Puzzle, PuzzleCell, SourceEntry } from '../types'
 import { cleanAnswer } from './extract'
+import { validatePuzzle } from './validate'
 
 interface WorkingCell {
   char: string
@@ -177,6 +178,13 @@ export function buildPuzzle(
     if (answer.length >= 2 && answer.length <= size && !unique.has(answer)) unique.set(answer, { ...entry, answer })
   })
   const entries = [...unique.values()]
+  if (size !== 5 && size !== 10) throw new Error('Choose a 5×5 or 10×10 grid.')
+  if (entries.length > 80) throw new Error('Select no more than 80 answers.')
+  for (const entry of entries) {
+    if (!entry.clue.trim()) throw new Error(`Write a clue for ${entry.answer}.`)
+    if (!entry.sourceName?.trim()) throw new Error(`Add a source for ${entry.answer}.`)
+  }
+  if (new Set(entries.map((entry) => entry.id)).size !== entries.length) throw new Error('Each answer must have a unique identifier.')
   if (entries.length < 2) throw new Error(`Choose at least two answers that fit a ${size}×${size} grid.`)
 
   const random = mulberry32(hashString(entries.map((entry) => entry.answer).join('|') + size))
@@ -210,8 +218,8 @@ export function buildPuzzle(
     return { ...placement, number }
   })
 
-  return {
-    id: `${Date.now()}-${size}`,
+  const puzzle: Puzzle = {
+    id: crypto.randomUUID(),
     title: title.trim() || 'Untitled crossword',
     subtitle: `${placements.length} clues · ${size}×${size}`,
     sourceName,
@@ -219,5 +227,8 @@ export function buildPuzzle(
     cells,
     placements,
     createdAt: new Date().toISOString(),
+    omittedAnswers: entries.filter((entry) => !placements.some((placed) => placed.id === entry.id)).map((entry) => entry.answer),
   }
+  validatePuzzle(puzzle)
+  return puzzle
 }

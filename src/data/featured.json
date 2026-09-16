@@ -1,0 +1,568 @@
+{
+  "id": "lozs-world-2026-09-v1",
+  "title": "Loz’s world",
+  "subtitle": "Arcade games, curious minds and things with wings.",
+  "sourceName": "Original clues for lozknowles.com",
+  "size": 10,
+  "cells": [
+    [
+      {
+        "solution": "F",
+        "downId": "loz-11",
+        "number": 1
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "A",
+        "downId": "loz-8",
+        "number": 2
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": "L",
+        "downId": "loz-11"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "S",
+        "acrossId": "loz-4",
+        "number": 3,
+        "downId": "loz-17"
+      },
+      {
+        "solution": "P",
+        "acrossId": "loz-4"
+      },
+      {
+        "solution": "R",
+        "acrossId": "loz-4"
+      },
+      {
+        "solution": "I",
+        "downId": "loz-8",
+        "acrossId": "loz-4"
+      },
+      {
+        "solution": "T",
+        "acrossId": "loz-4",
+        "downId": "loz-1",
+        "number": 4
+      },
+      {
+        "solution": "E",
+        "acrossId": "loz-4"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": "O",
+        "downId": "loz-11"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "W",
+        "downId": "loz-17"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "E",
+        "downId": "loz-1"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "W",
+        "downId": "loz-13",
+        "number": 5
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": "C",
+        "downId": "loz-11",
+        "acrossId": "loz-7",
+        "number": 6
+      },
+      {
+        "solution": "H",
+        "acrossId": "loz-7"
+      },
+      {
+        "solution": "I",
+        "downId": "loz-17",
+        "acrossId": "loz-7"
+      },
+      {
+        "solution": "P",
+        "acrossId": "loz-7"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "T",
+        "downId": "loz-1"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "I",
+        "downId": "loz-13"
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": "K",
+        "downId": "loz-11"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "F",
+        "downId": "loz-17"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "A",
+        "downId": "loz-2",
+        "number": 7
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "R",
+        "downId": "loz-1"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "N",
+        "downId": "loz-13"
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": null
+      },
+      {
+        "solution": "S",
+        "acrossId": "loz-12",
+        "number": 8,
+        "downId": "loz-15"
+      },
+      {
+        "solution": "T",
+        "downId": "loz-17",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "A",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "R",
+        "downId": "loz-2",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "L",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "I",
+        "downId": "loz-1",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "N",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": "G",
+        "downId": "loz-13",
+        "acrossId": "loz-12"
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": null
+      },
+      {
+        "solution": "O",
+        "downId": "loz-15"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "C",
+        "downId": "loz-2"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "S",
+        "downId": "loz-1"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": "P",
+        "acrossId": "loz-0",
+        "number": 9
+      },
+      {
+        "solution": "A",
+        "downId": "loz-15",
+        "acrossId": "loz-0"
+      },
+      {
+        "solution": "C",
+        "acrossId": "loz-0"
+      },
+      {
+        "solution": "M",
+        "acrossId": "loz-0"
+      },
+      {
+        "solution": "A",
+        "downId": "loz-2",
+        "acrossId": "loz-0"
+      },
+      {
+        "solution": "N",
+        "acrossId": "loz-0"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "R",
+        "acrossId": "loz-9",
+        "number": 10
+      },
+      {
+        "solution": "O",
+        "acrossId": "loz-9",
+        "downId": "loz-21",
+        "number": 11
+      },
+      {
+        "solution": "M",
+        "acrossId": "loz-9"
+      }
+    ],
+    [
+      {
+        "solution": null
+      },
+      {
+        "solution": "R",
+        "downId": "loz-15"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "D",
+        "downId": "loz-2"
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "W",
+        "downId": "loz-21"
+      },
+      {
+        "solution": null
+      }
+    ],
+    [
+      {
+        "solution": null
+      },
+      {
+        "solution": null
+      },
+      {
+        "solution": "T",
+        "acrossId": "loz-16",
+        "number": 12
+      },
+      {
+        "solution": "H",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": "E",
+        "downId": "loz-2",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": "R",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": "M",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": "A",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": "L",
+        "downId": "loz-21",
+        "acrossId": "loz-16"
+      },
+      {
+        "solution": null
+      }
+    ]
+  ],
+  "placements": [
+    {
+      "id": "loz-11",
+      "answer": "FLOCK",
+      "clue": "A group of birds moving together",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "number": 1
+    },
+    {
+      "id": "loz-8",
+      "answer": "AI",
+      "clue": "Artificial intelligence, for short",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "number": 2
+    },
+    {
+      "id": "loz-4",
+      "answer": "SPRITE",
+      "clue": "A moving game character drawn on the screen",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 1,
+      "col": 2,
+      "direction": "across",
+      "number": 3
+    },
+    {
+      "id": "loz-17",
+      "answer": "SWIFT",
+      "clue": "A fast aerial bird, or a programming language",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 1,
+      "col": 2,
+      "direction": "down",
+      "number": 3
+    },
+    {
+      "id": "loz-1",
+      "answer": "TETRIS",
+      "clue": "Falling-block game where complete lines disappear",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "number": 4
+    },
+    {
+      "id": "loz-13",
+      "answer": "WING",
+      "clue": "Feathered surface that helps a bird fly",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 2,
+      "col": 8,
+      "direction": "down",
+      "number": 5
+    },
+    {
+      "id": "loz-7",
+      "answer": "CHIP",
+      "clue": "Silicon component at the heart of a computer",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "number": 6
+    },
+    {
+      "id": "loz-2",
+      "answer": "ARCADE",
+      "clue": "Home of coin-operated cabinets and high scores",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 4,
+      "col": 4,
+      "direction": "down",
+      "number": 7
+    },
+    {
+      "id": "loz-12",
+      "answer": "STARLING",
+      "clue": "Iridescent bird famous for joining a murmuration",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 5,
+      "col": 1,
+      "direction": "across",
+      "number": 8
+    },
+    {
+      "id": "loz-15",
+      "answer": "SOAR",
+      "clue": "Fly high on rising air without constant flapping",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 5,
+      "col": 1,
+      "direction": "down",
+      "number": 8
+    },
+    {
+      "id": "loz-0",
+      "answer": "PACMAN",
+      "clue": "Dot-munching arcade hero pursued by four ghosts",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "number": 9
+    },
+    {
+      "id": "loz-9",
+      "answer": "ROM",
+      "clue": "Read-only memory, in three letters",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 7,
+      "col": 7,
+      "direction": "across",
+      "number": 10
+    },
+    {
+      "id": "loz-21",
+      "answer": "OWL",
+      "clue": "A bird associated with hooting and night-time hunting",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 7,
+      "col": 8,
+      "direction": "down",
+      "number": 11
+    },
+    {
+      "id": "loz-16",
+      "answer": "THERMAL",
+      "clue": "A rising column of warm air used by soaring birds",
+      "selected": true,
+      "sourceName": "Loz’s world — original general-knowledge clues",
+      "row": 9,
+      "col": 2,
+      "direction": "across",
+      "number": 12
+    }
+  ],
+  "createdAt": "2026-09-16T00:00:00.000Z",
+  "omittedAnswers": []
+}

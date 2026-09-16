@@ -34,4 +34,5 @@ export const sampleEntries: SourceEntry[] = entries.map(([answer, clue], index) 
   answer,
   clue,
   selected: true,
+  sourceName: 'Collingham pub history — included example',
 }))

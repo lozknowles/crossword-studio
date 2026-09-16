@@ -1,80 +1,75 @@
+![Crossword Studio: a crossword taking shape inside scaffolding](public/github-hero.svg)
+
 # Crossword Studio
 
-Crossword Studio turns a text-based or OCRed PDF into an editable, playable crossword. It runs entirely in the browser, so source PDFs are never uploaded to a server.
+**Good stories. New connections.** Turn a document or a public article into a crossword, shape the clues, and solve it online or take it to paper.
 
-The included example is based on **A History of the Public Houses of Collingham, Nottinghamshire** and demonstrates the source-to-puzzle workflow for both supported grid sizes.
+**[Open the studio on lozknowles.com](https://www.lozknowles.com/crossword/)** · [GitHub Pages edition](https://lozknowles.github.io/generic-crossword-builder/) · [Collingham.org](https://www.collingham.org/)
 
-## Current status
+Or start with **Loz’s world**: a ready-to-play, 14-clue crossword about arcade games, nature, bird flight and technology. Expect a little Pac-Man, a little murmuration, and a few things that need compiling.
 
-The first complete browser application is available on the `codex/build-crossword-studio` branch and in draft PR #1. It currently provides:
+## From raw material to wordplay
 
-- Local PDF text extraction with PDF.js
-- Automatic answer and source-sentence clue suggestions
-- Editable answers, clues, selection state, and puzzle title
-- Deterministic 5x5 and 10x10 crossword generation
-- Layout checks that prevent conflicts and invalid adjacent words
-- Conventional black unused squares and playable answer cells
-- Responsive online solving with Across/Down highlighting
-- Mouse, touch, and four-direction arrow-key navigation
-- Check, reveal, restart, timer, and local progress autosave
-- Print layout and JSON puzzle export
-- GitHub Pages deployment with no backend or API key
+1. **Bring a story.** Choose a PDF, Word document, text file, pasted text or public article URL, such as Wikipedia.
+2. **Shape the pieces.** Review suggested answers and source-sentence clues; edit or write your own. Choose an exact 5 × 5 or 10 × 10 grid.
+3. **Fit it together.** The builder finds a connected set, checks every visible letter run, and tells you which selected words did not fit.
+4. **Enjoy the aha.** Solve with keyboard or touch, check letters, take a two-second hint, and resume saved progress. Download an A4 PDF with an optional separate answer key, print, or share a puzzle JSON file.
 
-## Progress proven in the Collingham Footnotes integration
+The illustrated header builds an actual valid crossword inside a miniature scaffold. It respects reduced-motion preferences. The wide GitHub banner and website artwork are generated from the same code: `pnpm hero`.
 
-The builder work has also been exercised in the LocalWalks Footnotes crossword. That integration established the following requirements for generated and published puzzles:
+## The Collingham connection
 
-- Every visible multi-letter run must map to a real Across or Down entry.
-- Every entry must have a non-empty clue and a named source.
-- Across and Down clues must be independently sorted by clue number.
-- Unused cells are black; playable cells are white with black borders.
-- The selected clue should appear directly beneath the grid.
-- Left/Right and Up/Down navigation must work without a mouse and skip black squares.
-- Grid, clue, source, print, desktop, and mobile behaviour need regression coverage.
+This version consolidates the grid and solver improvements from the current Collingham Footnotes source, pinned to LocalWalks commit [`9fca683`](https://github.com/lozknowles/LocalWalks/commit/9fca683d922a766bf2d4301bc2b53e168335564f):
 
-The standalone app already implements the core generation, black-square grid, solver, and spatial keyboard navigation. Per-entry source metadata, strict publish-time validation, white-cell styling, and the under-grid active-clue treatment are the next items to consolidate from the Footnotes implementation.
+- The unchanged Collingham grid builder checks cells used by the standalone validator.
+- Every answer needs a clue and named source; every visible multi-letter run needs exactly one clue.
+- Across and Down clues are numbered and sorted; unused cells are black and playable cells white.
+- The active clue sits directly beneath the grid. Spatial arrow navigation reaches every playable cell.
+- Hints briefly show a word without replacing your saved letters; progress survives reloading.
+
+See [source provenance](docs/COLLINGHAM-PROVENANCE.md) for exact files, hashes and the boundary between shared code and adapted behaviour.
+
+## What happens to your material?
+
+**Documents stay on your device.** PDF.js reads selectable PDF text, and the browser reads DOCX, TXT and Markdown. Files are limited to 20 MB; PDFs to 80 pages; extracted text to 180,000 characters. Scanned PDFs need OCR first. Old `.doc` files need saving as `.docx`.
+
+**Article URLs go to this site’s article reader.** It fetches public HTML or text, without your cookies or sign-in, then returns the article text. The reader blocks private network addresses, rechecks and pins every redirect target, and limits response size, time, concurrency and request rate. It does not store submitted URLs or extracted text. Some sites require JavaScript, block automated reads or impose access restrictions; paste text you can access in those cases.
+
+Suggested clues are **editable source sentences with a word blanked out**, not AI-written cryptic clues. English alphabetic answers are supported. Review clues before sharing; the source excerpt and original URL remain available for checking.
+
+Only your most recent puzzle, its clue excerpts and solving progress are kept in local browser storage. “Clear saved puzzle” removes that saved session. Puzzle JSON contains answers so another person can open and solve it; it is not a secret answer format. A blank PDF does not contain the answer key unless you choose it.
 
 ## Run locally
 
-Requires Node.js and pnpm 11.
+Requires Node.js **22.18+**, pnpm **11.19.0**, and Python **3.10+** for URL imports.
 
-```bash
+```sh
 pnpm install --frozen-lockfile
-pnpm dev
+pnpm dev --port 5184
 ```
 
-Open the URL printed by Vite. Before publishing changes, run:
+In a second terminal, enable public article imports for that development origin:
 
-```bash
+```sh
+python server/article_service.py --port 8793 --dev-origin http://127.0.0.1:5184
+```
+
+Documents, the prepared crossword and PDF downloads work without the article service. No API key or AI account is required.
+
+## Check and publish
+
+```sh
 pnpm lint
+pnpm test
+python -m unittest discover -s server -v
 pnpm build
-pnpm preview
+pnpm build:website
+pnpm exec tsx scripts/verify-pdf.ts /path/to/pdf-review
 ```
 
-## How generation works
+Render and inspect generated PDFs when changing their layout. Check document and Wikipedia imports, both grid sizes, keyboard navigation, temporary hints, progress after reload, and desktop/mobile layout.
 
-1. PDF.js extracts selectable text inside the browser.
-2. The extractor ranks proper names and repeated terms, then creates editable fill-in-the-blank clues from their source sentences.
-3. A deterministic multi-attempt layout engine places selected answers, favouring intersections and central positions.
-4. Placement checks reject conflicts, same-direction overlaps, end-to-end touching, and accidental adjacent words.
-5. Starts are numbered in reading order and the puzzle is handed to the interactive solver.
-
-For reliable extraction, use PDFs with selectable text or run OCR before importing. Image-only scans do not contain text for the browser to extract.
-
-## Data and privacy
-
-PDF contents, answers, clues, and solver progress stay in the browser. Solver progress is stored in local storage. Exported puzzle JSON is only downloaded when the user requests it.
-
-## Deployment
-
-The included GitHub Actions workflow builds and deploys the site whenever `main` is pushed. In repository settings, choose **GitHub Actions** as the Pages source.
-
-## Repository workflow
-
-- Active implementation branch: `codex/build-crossword-studio`
-- Draft pull request: `#1 Build privacy-first PDF crossword studio`
-- Package manager: pnpm 11
-- Required checks: `pnpm lint` and `pnpm build`
+The Pages workflow runs checks and publishes `main`. Its URL importer uses the public lozknowles.com reader. `pnpm build:website` produces the `/crossword/` edition with a same-origin reader. The website repository pins this builder’s exact commit and packages its browser output; Python service code is installed outside the public directory. See [deployment notes](docs/DEPLOYMENT.md).
 
 ## License
 
