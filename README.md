@@ -4,7 +4,7 @@
 
 **Good stories. New connections.** Turn a document or a public article into a crossword, shape the clues, and solve it online or take it to paper.
 
-**[Open the studio on lozknowles.com](https://www.lozknowles.com/crossword/)** · [GitHub Pages edition](https://lozknowles.github.io/generic-crossword-builder/) · [Collingham.org](https://www.collingham.org/)
+**[Open the studio on lozknowles.com](https://www.lozknowles.com/crossword/)** · [GitHub Pages edition](https://lozknowles.github.io/crossword-studio/) · [Collingham.org](https://www.collingham.org/)
 
 Or start with **Loz’s world**: a ready-to-play, 14-clue crossword about arcade games, nature, bird flight and technology. Expect a little Pac-Man, a little murmuration, and a few things that need compiling.
 

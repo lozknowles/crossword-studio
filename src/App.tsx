@@ -89,7 +89,7 @@ function App() {
       <a className="site-mark" href="https://www.lozknowles.com/" aria-label="Lawrence Knowles home">LK<span>•</span></a>
       <button className="brand" onClick={() => setScreen('builder')}><span className="brand-mark"><Grid2X2 size={20} /></span><span>Crossword <strong>Studio</strong></span></button>
       <nav className="topnav" aria-label="Crossword navigation"><button className={screen === 'builder' ? 'active' : ''} onClick={() => setScreen('builder')}>Build</button><button className={screen === 'solver' ? 'active' : ''} disabled={!puzzle} onClick={() => setScreen('solver')}>Solve</button></nav>
-      <a className="project-link" href="https://github.com/lozknowles/generic-crossword-builder">GitHub <ArrowUpRight size={14} /></a>
+      <a className="project-link" href="https://github.com/lozknowles/crossword-studio">GitHub <ArrowUpRight size={14} /></a>
     </header>
     {screen === 'solver' && puzzle ? <Solver key={puzzle.id} puzzle={puzzle} onBack={() => setScreen('builder')} /> : <main>
       <section className="hero workshop-hero">
@@ -101,7 +101,7 @@ function App() {
         <div><span className="step-kicker">READY TO PLAY / 10 × 10 / {featured.placements.length} CLUES</span><h2 id="featured-title">A little of Loz’s world.</h2><p>Arcade games, curious minds and things with wings. A hand-crafted crossword about nature, technology and the things that keep me looking up.</p><button className="small-primary" onClick={playFeatured}>{puzzle?.id === featured.id ? 'Continue Loz’s world' : 'Play Loz’s world'} <ChevronRight size={17} /></button></div>
         <span className="featured-note">No building required.<br />Just bring your curiosity.</span>
       </section>
-      <section className="studio" aria-label="Crossword builder">
+      <section className="studio" aria-label="Crossword Studio">
         <div className="studio-progress"><span>THE WORKSHOP</span><p>Inspired by the crosswords at <a href="https://www.collingham.org/?footnotes=1">Collingham.org ↗</a></p></div>
         <div className="builder-layout"><div className="builder-main">
           <article className="panel source-panel" aria-busy={!!busy}>
@@ -135,7 +135,7 @@ function App() {
       </section>
       <section className="how-it-works" id="how-it-works"><span className="step-kicker">From a story to a satisfying Sunday</span><h2>Some things are better in squares.</h2><div className="how-grid"><div><strong>Bring something interesting</strong><p>A local story, a lesson, a favourite Wikipedia rabbit hole. Documents stay on your device; web pages are read on request.</p></div><div><strong>Give it your voice</strong><p>Review the suggested answers, shape the clues and choose a quick 5 × 5 or a roomier 10 × 10.</p></div><div><strong>Make a little time for play</strong><p>Solve with hints and saved progress, download a clean PDF, or save the puzzle file to send to a friend.</p></div></div></section>
     </main>}
-    <footer className="site-footer"><a href="https://www.lozknowles.com/">Lawrence Knowles</a><span>Curiosity, with a few words crossed.</span><a href="https://github.com/lozknowles/generic-crossword-builder">Explore the code ↗</a></footer>
+    <footer className="site-footer"><a href="https://www.lozknowles.com/">Lawrence Knowles</a><span>Curiosity, with a few words crossed.</span><a href="https://github.com/lozknowles/crossword-studio">Explore the code ↗</a></footer>
   </div>
 }
 export default App

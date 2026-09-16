@@ -1,5 +1,5 @@
 ---
-name: generic-crossword-builder
+name: crossword-studio
 description: Build, validate, and publish privacy-first browser crosswords generated from local documents or public articles in exact 5x5 or 10x10 grids.
 license: MIT
 compatibility: React, TypeScript, Vite, PDF.js, and pnpm 11.
@@ -9,7 +9,7 @@ metadata:
   last_updated: "2026-09-16"
 ---
 
-# Generic Crossword Builder
+# Crossword Studio
 
 Use this skill when developing Crossword Studio, importing a PDF, generating a 5x5 or 10x10 puzzle, validating crossword structure, improving the solver, or publishing the static application.
 
