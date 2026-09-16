@@ -1,0 +1,34 @@
+/* Shared editorial style with lozknowles.com; the worksheet stays paper-like. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap');
+
+:root { font-family: Manrope, Arial, sans-serif; }
+.app-shell { background: radial-gradient(ellipse at 85% 0,#142824 0,transparent 35%),#06100f; }
+.topbar { background: #091713; border-color: #e9eee42b; color: #e9eee4; }
+.topbar .site-mark, .topbar .brand { color: #e9eee4; }
+.topbar .site-mark span, .topbar .brand strong { color: #c8ff68; }
+.topbar .brand-mark { color: #06100f; background: #c8ff68; }
+.topbar .topnav button, .topbar .topnav a { color: #abbeb6; }
+.topbar .topnav button:hover, .topbar .topnav button.active { color: #66e8ff; background: #26bdff18; }
+.topbar .project-link { color: #72ead5; }
+.hero h1, .panel-heading h2, .settings-panel h2, .how-it-works h2,
+.puzzle-heading h1, .clues-heading h2, .complete-card h2, .pdf-card h3,
+.featured-puzzle h2 { font-family: Manrope, Arial, sans-serif; font-weight: 400; }
+.workshop-hero h1 { color: #e9eee4; font-weight: 300; }
+.hero h1 em { font-family: Newsreader, Georgia, serif; font-weight: 300; color: #b6a7ff; }
+.hero-copy > p, .workshop-hero .hero-points, .art-caption { color: #abbeb6; }
+.workshop-hero .eyebrow { color: #72ead5; }
+.eyebrow, .step-kicker, .art-caption, .studio-progress > span { font-family: 'DM Mono', monospace; }
+.art-caption i { background: #c8ff68; }
+.featured-puzzle { background: #10231d; border-color: #e9eee42b; color: #e9eee4; }
+.featured-puzzle p { color: #abbeb6; }
+.featured-puzzle .step-kicker { color: #72ead5; }
+.featured-puzzle .small-primary { background: #c8ff68; color: #06100f; }
+.featured-note { font-family: Newsreader, Georgia, serif; color: #b6a7ff; }
+.studio-progress { background: #10231d; border: 1px solid #e9eee42b; }
+.studio-progress a { color: #c8ff68; }
+.builder-layout { background: #e9eee4; border-color: #e9eee42b; }
+.site-footer { color: #abbeb6; border-color: #e9eee42b; }
+.site-footer a { color: #72ead5; }
+.solver-page { background: var(--paper); border-radius: 12px; margin-top: 28px; padding: 28px; }
+@media (max-width: 580px) { .solver-page { padding: 20px 14px; margin-top: 0; border-radius: 0; } }
+@media print { .app-shell, .solver-page { background: white; } .solver-page { margin: 0; padding: 0; } }
